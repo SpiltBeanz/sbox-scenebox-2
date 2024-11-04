@@ -101,7 +101,7 @@ public sealed class Player : Component
 				UpdateCamera();
 		}
 
-		UpdateCrouch();
+		
 		UpdateAnimations();
 		RotateBody();
 
@@ -126,6 +126,7 @@ public sealed class Player : Component
 
 			BuildWishVelocity();
 			Move();
+			UpdateCrouch();
 		}
 		else
 		{
@@ -246,7 +247,7 @@ public sealed class Player : Component
 			IsCrouching = Input.Down( "Duck" );
 		}
 
-		CrouchHeight = CrouchHeight.LerpTo( IsCrouching ? 32f : 64f, 1f - MathF.Pow( 0.5f, Time.Delta * 25f ) );
+		CrouchHeight = CrouchHeight.LerpTo( IsCrouching ? 32f : 64f, 1f - MathF.Pow( .6f, Time.Delta * 15f ) );
 		Head.Transform.LocalPosition = Head.Transform.LocalPosition.WithZ( CrouchHeight );
 	}
 
